@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NOUR\\Desktop\\nour .net\\MvcTodoApp\\MvcTodoApp.csproj",
+      "projectUniqueName": "D:\\projects_of_faculty_on_github\\MVC\\MvcTodoApp.csproj",
       "projectName": "MvcTodoApp",
-      "projectPath": "C:\\Users\\NOUR\\Desktop\\nour .net\\MvcTodoApp\\MvcTodoApp.csproj",
+      "projectPath": "D:\\projects_of_faculty_on_github\\MVC\\MvcTodoApp.csproj",
       "packagesPath": "C:\\Users\\NOUR\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NOUR\\Desktop\\nour .net\\MvcTodoApp\\obj\\",
+      "outputPath": "D:\\projects_of_faculty_on_github\\MVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NOUR\\AppData\\Roaming\\NuGet\\NuGet.Config"
