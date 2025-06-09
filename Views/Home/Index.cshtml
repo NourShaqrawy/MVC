@@ -1,0 +1,161 @@
+﻿@model List<MvcTodoApp.Models.TaskItem>
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تطبيق المهام اليومية - MVC</title>
+
+    <style>
+        /* 🎨 لوحة الألوان */
+        :root {
+            --c-bg: #ecf8ff; /* خلفية منعشة */
+            --c-card: rgba(255, 255, 255, 0.85);
+            --c-primary: #4CAF50; /* أخضر زاهي */
+            --c-primary-dark: #388E3C;
+            --c-accent: #FF9800; /* برتقالي نابض */
+            --c-accent-dark: #E65100;
+            --c-danger: #F44336; /* أحمر ناعم */
+            --c-text: #333; /* لون النص */
+            --radius: 12px;
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ✨ إعدادات الصفحة العامة */
+        body {
+            background: var(--c-bg);
+            color: var(--c-text);
+            font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--c-primary);
+            font-weight: bold;
+        }
+
+        /* 📝 قائمة المهام */
+        ul {
+            list-style: none;
+            max-width: 640px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            background: var(--c-card);
+            padding: 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        li:hover {
+            transform: scale(1.03);
+        }
+
+        span, s {
+            flex: 1;
+            font-size: 1.1rem;
+            word-break: break-word;
+        }
+
+        s {
+            color: #757575;
+            text-decoration: line-through;
+        }
+
+        /* 🎭 الأزرار */
+        button {
+            background: var(--c-primary);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--c-primary-dark);
+        }
+
+        .btn-edit {
+            background: var(--c-accent);
+        }
+
+        .btn-edit:hover {
+            background: var(--c-accent-dark);
+        }
+
+        .btn-add {
+            background: var(--c-primary);
+        }
+
+        .btn-add:hover {
+            background: var(--c-primary-dark);
+        }
+
+        /* ➕ نموذج إضافة المهام */
+        .add-task-form {
+            max-width: 640px;
+            margin: 3rem auto;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            background: var(--c-card);
+            padding: 1.2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>✅ قائمة المهام اليومية</h1>
+
+    <ul>
+        @foreach (var task in Model)
+        {
+            var completedClass = task.IsComplete ? "completed" : "";
+
+            <li class="@completedClass">
+                @if (task.IsComplete)
+                {
+                  
+                    <h5>@task.Title</h5>
+                }
+                else
+                {
+                    <span>@task.Title</span>
+
+                    <form method="post" action="/Home/CompleteTask">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <button type="submit" class="btn-complete">إكمال</button>
+                    </form>
+
+                    <form method="post" action="/Home/EditTask">
+                        <input type="hidden" name="id" value="@task.Id" />
+                        <input type="text" name="newTitle" placeholder="عنوان جديد" value="@task.Title" />
+                        <button type="submit" class="btn-edit">تعديل</button>
+                    </form>
+                }
+            </li>
+        }
+    </ul>
+
+    <form method="post" action="/Home/AddTask" class="add-task-form">
+        <input type="text" name="title" placeholder="🖊️ أدخل عنوان المهمة" required />
+        <button type="submit" class="btn-add">إضافة</button>
+    </form>
+
+</body>
+</html>
