@@ -7,7 +7,7 @@ namespace MvcTodoApp.Controllers
 {
     public class HomeController : Controller
     {
-        // قائمة المهام الثابتة (في الذاكرة)
+    
         private static List<TaskItem> tasks =
         [
             new() { Id = 1, Title = "Learn MVC Design Pattern", IsComplete = false },
@@ -15,17 +15,11 @@ namespace MvcTodoApp.Controllers
             new() { Id = 3, Title = "Study git", IsComplete = false },
         ];
 
-        /// <summary>
-        /// Displays the list of tasks.
-        /// </summary>
         public IActionResult Index()
         {
             return View(tasks);
         }
 
-        /// <summary>
-        /// Adds a new task.
-        /// </summary>
         [HttpPost]
         public IActionResult AddTask(string title)
         {
@@ -38,9 +32,6 @@ namespace MvcTodoApp.Controllers
             return RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// Marks a task as completed.
-        /// </summary>
         [HttpPost]
         public IActionResult CompleteTask(int id)
         {
@@ -50,11 +41,7 @@ namespace MvcTodoApp.Controllers
             return RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// Edits the title of a task.
-        /// </summary>
-        /// <param name="id">The ID of the task to edit</param>
-        /// <param name="newTitle">The new title for the task</param>
+       
         [HttpPost]
       public IActionResult EditTask(int id, string newTitle)
 {
@@ -78,7 +65,7 @@ namespace MvcTodoApp.Controllers
     }
     catch (Exception ex)
     {
-        // Log the exception (if necessary)
+   
         return StatusCode(500, $"An error occurred: {ex.Message}");
     }
 }
